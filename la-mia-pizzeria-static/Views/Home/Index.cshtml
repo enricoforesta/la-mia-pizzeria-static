@@ -1,8 +1,58 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-}
+    Layout = null;
+    List<Pizza> listaPizza = new List<Pizza>();
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+    listaPizza.Add(new Pizza("Pizza Capricciosa", "Molto Buona", "~/img/PizzaCapricciosa.jpg", 10.00M));
+    listaPizza.Add(new Pizza("Pizza Margherita", "Molto Buona", "~/img/PizzaMargherita.jpg", 8.50M));
+    listaPizza.Add(new Pizza("Pizza Fritta", "Molto Buona", "~/img/PizzaFritta.jpeg", 25.98M));
+    listaPizza.Add(new Pizza("Pizza Marinara", "Molto Buona", "~/img/PizzaMarinara.jpg", 9.50M));
+    listaPizza.Add(new Pizza("Pizza Napoletana", "Molto Buona", "~/img/PizzaNapoletana.jpg", 14.00M));
+    listaPizza.Add(new Pizza("Pizza Patate e Salsiccia", "Molto Buona", "~/img/PizzaPatateSalsiccia.jpg", 12.50M));
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+
+
+<body class="bg-dark text-white">
+
+    <div class="text-center container-xxl">
+        <h1>Le mie pizze</h1>
+
+        <table class="table table-dark m-5 ">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrizione</th>
+                    <th scope="col">Prezzo</th>
+                    <th scope="col">Immagine</th>
+                </tr>
+            </thead>
+            <tbody style="vertical-align:unset;">
+                @{
+                    int i = 1;
+                    foreach (var item in listaPizza)
+                    {
+                        <tr>
+                            <th scope="row">@i</th>
+                            <td>@item.Name</td>
+                            <td>@item.Description</td>
+                            <td>@item.Price</td>
+                            <td>
+                                <img style="width: 150px" src=@Url.Content(item.PizzaImg) alt=@item.Name>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+
